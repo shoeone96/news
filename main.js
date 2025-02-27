@@ -9,6 +9,15 @@ const getLatestNews = async () => {
     render();
 }
 
+const getNewsByKeyword = async () => {
+    console.log('hi')
+    const keyword = document.getElementById('search-input').value;
+    const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=us&q=${keyword}&apiKey=${API_KEY}`);
+    const response = await (await fetch(url)).json();
+    newsList = response.articles;
+    render();
+}
+
 const renderButton = () => {
     const buttonHTML = buttonNames.map(button =>
         `<button class="menu-button">${button}</button>`
